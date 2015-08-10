@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *place;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 @property (weak, nonatomic) IBOutlet UILabel *temp;
+@property (weak, nonatomic) IBOutlet UILabel *tempNight;
+@property (weak, nonatomic) IBOutlet UILabel *tempEve;
+@property (weak, nonatomic) IBOutlet UILabel *tempMorn;
 
 @end
 
@@ -40,6 +43,9 @@
 	locationManager.distanceFilter = kCLDistanceFilterNone;
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	[locationManager startUpdatingLocation];
+}
+- (IBAction)getLocation:(id)sender {
+    [self currentLocationInit];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -116,24 +122,43 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    WeatherAPI *api = [WeatherAPI new];
-    [api currentWeatherByCityName:_pickerData[row] withCallback:^( NSError* error, NSDictionary *result ){
-        if (!error && result) {
-            CGFloat kelvin = [result[@"main"][@"temp"] floatValue];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _temp.text = [NSString stringWithFormat:@"%.1f℃", [self tempToCelcius:kelvin]
-                               ];
-        });
-        }
-    }];
-	//
+	[[WeatherAPI new] currentWeatherByCityName:_pickerData[row]
+	 withCallback:^( NSError *error, NSDictionary *result ) {
+	    if (!error && result) {
+	        CGFloat kelvin = [result[@"main"][@"temp"] floatValue];
+	        NSString *cityId = result[@"id"];
+	        dispatch_async(dispatch_get_main_queue(), ^{
+				_temp.text = [NSString stringWithFormat:@"%.1f℃", [self tempToCelcius:kelvin]];
+			});
+	        [self updateForecast:cityId];
+		}
+	}];
+	
+	
+}
 
+- (void)updateForecast:(NSString *)cityId {
+
+	[[WeatherAPI new] forecast:cityId andLang:@"en" withCallback:^( NSError *error, NSDictionary *result ) {
+        if (!error && result) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSDictionary *dic = result[@"list"][0];
+                NSLog(@"%@", dic);
+                _tempNight.text = [NSString stringWithFormat:@"%.1f℃", [self tempToCelcius:[dic[@"temp"][@"night"] floatValue]]];
+                _tempEve.text = [NSString stringWithFormat:@"%.1f℃", [self tempToCelcius:[dic[@"temp"][@"eve"] floatValue]]];
+                _tempMorn.text = [NSString stringWithFormat:@"%.1f℃", [self tempToCelcius:[dic[@"temp"][@"morn"] floatValue]]];
+            });
+        }
+	
+	}];
+	
 }
 
 #pragma mark - Utilites
 
-- (CGFloat) tempToCelcius:(CGFloat) tempKelvin
-{
-    return tempKelvin - 273.15;
+- (CGFloat)tempToCelcius:(CGFloat)tempKelvin {
+	return tempKelvin - 273.15;
 }
+
 @end

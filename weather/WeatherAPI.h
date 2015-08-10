@@ -11,5 +11,7 @@
 @interface WeatherAPI : NSObject
 -(void) currentWeatherByCityName:(NSString *) name
                     withCallback:( void (^)( NSError* error, NSDictionary *result ) )callback;
+-(void) forecast:(NSString *) name andLang:(NSString *)lang
+                    withCallback:( void (^)( NSError* error, NSDictionary *result ) )callback;
 
 @end
