@@ -15,6 +15,7 @@
 		8F4D782C1B78781200B25A6B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4D782A1B78781200B25A6B /* LaunchScreen.xib */; };
 		8F4D78381B78781200B25A6B /* weatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4D78371B78781200B25A6B /* weatherTests.m */; };
 		8F4D78421B787BF300B25A6B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4D78411B787BF300B25A6B /* CoreLocation.framework */; };
+		8F4D78451B788F4800B25A6B /* WeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4D78441B788F4800B25A6B /* WeatherAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		8F4D78361B78781200B25A6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F4D78371B78781200B25A6B /* weatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = weatherTests.m; sourceTree = "<group>"; };
 		8F4D78411B787BF300B25A6B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8F4D78431B788F4800B25A6B /* WeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAPI.h; sourceTree = "<group>"; };
+		8F4D78441B788F4800B25A6B /* WeatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				8F4D781F1B78781200B25A6B /* AppDelegate.h */,
+				8F4D78431B788F4800B25A6B /* WeatherAPI.h */,
+				8F4D78441B788F4800B25A6B /* WeatherAPI.m */,
 				8F4D78201B78781200B25A6B /* AppDelegate.m */,
 				8F4D78221B78781200B25A6B /* ViewController.h */,
 				8F4D78231B78781200B25A6B /* ViewController.m */,
@@ -224,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4D78241B78781200B25A6B /* ViewController.m in Sources */,
+				8F4D78451B788F4800B25A6B /* WeatherAPI.m in Sources */,
 				8F4D78211B78781200B25A6B /* AppDelegate.m in Sources */,
 				8F4D781E1B78781200B25A6B /* main.m in Sources */,
 			);

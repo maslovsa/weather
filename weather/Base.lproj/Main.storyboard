@@ -106,6 +106,7 @@
                         <outlet property="longitude" destination="eu2-sF-i07" id="Swk-om-QOy"/>
                         <outlet property="picker" destination="Iie-9g-hSp" id="FS4-VN-EiM"/>
                         <outlet property="place" destination="1Yo-of-k6w" id="CcY-Ea-K6j"/>
+                        <outlet property="temp" destination="ZBI-Z1-VPB" id="Rcc-h1-7CV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
